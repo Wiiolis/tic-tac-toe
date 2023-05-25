@@ -22,7 +22,7 @@ export default function App({ props }) {
 
   function handleClick(idx) {
     const nextSquares = squares.slice();
-    if (nextSquares[idx]) return;
+    if (nextSquares[idx] || winner) return;
 
     if (xIsNext) {
       nextSquares[idx] = "x";
@@ -39,11 +39,13 @@ export default function App({ props }) {
 
   return (
     <div className="App">
-      <p>
-        Current player: <span>{xIsNext ? "x" : "o"}</span>
-      </p>
-
-      <p>Winner is {winner}</p>
+      {winner ? (
+        <p> Winner is {winner} </p>
+      ) : (
+        <p>
+          Current player: <span>{xIsNext ? "x" : "o"}</span>
+        </p>
+      )}
 
       <div className="box">
         {squares.map((square, idx) => {
