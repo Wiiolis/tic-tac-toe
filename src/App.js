@@ -47,7 +47,11 @@ export default function App({ props }) {
         </p>
       )}
 
+      <div className="boxBorder" />
       <div className="box">
+        <div className={`gateClosed ${winner && "gateOpened"}`}>
+          <p>restart</p>
+        </div>
         {squares.map((square, idx) => {
           return (
             <Square value={squares[idx]} changeValue={() => handleClick(idx)} />

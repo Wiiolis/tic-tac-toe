@@ -16,7 +16,6 @@ body {
 p, p>span {
   font-weight: bold;
   font-size: 38px;
-  margin-bottom: 14px;
   color: indianred;
   font-family: Bungee;
   text-shadow: 0 1px 0 #5e2727, 0 2px 0 #572c2c, 0 3px 0 #542b2b, 0 4px 0 #502d2d, 0 5px 0 #372727, 0 6px 1px rgb(0 0 0 / 10%), 0 0 5px rgb(0 0 0 / 10%), 0 1px 3px rgb(0 0 0 / 30%), 0 3px 5px rgb(0 0 0 / 20%), 0 5px 10px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 20%), 0 20px 20px rgb(0 0 0 / 15%), 2px 2px 2px rgb(206 89 55 / 0%);
@@ -31,12 +30,26 @@ p > span {
 .box {
   width: 312px;
   height: 312px;
+  position: absolute;
+  margin-top: 122px;
   display: flex;
   flex-wrap: wrap;
   background-color: rgb(111, 183, 185);
-  border: 50px outset rgb(64, 135, 145);
-  box-shadow:  3px 2px 2px 1px #00000091;   
 }
+
+.boxBorder {
+  content: '';
+  border: 50px outset rgb(64, 135, 145);
+  width: 312px;
+  height: 312px;
+  box-shadow:  3px 2px 2px 1px #00000091;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .square {
   width: 100px;
@@ -51,13 +64,39 @@ p > span {
   justify-content: center;
   transition: .3s ease all;
   color: rgb(111, 183, 185);
+  position: relative;
+}
+
+.gateClosed {
+  background-color: cadetblue;
+  width: 0;
+  height: inherit;
+  position: absolute;
+  transition: 2s ease all;
+  transition-delay: 500ms;
+  box-shadow: inset 1px 1px 1px 1px #00000053; 
+  z-index: 5;
+  overflow: hidden;
+}
+
+.gateClosed.gateOpened {
+  background-color: cadetblue;
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  box-shadow: 5px 0px 0px 0px #00000091, inset 3px 2px 2px 1px #00000091; 
+}
+
+
+.gateClosed p {
+  position: absolute;
+  right: 0
 }
 
 .x {
   background-color: cadetblue;
   border-color: rgb(63, 114, 116);
   color: white;
-  box-shadow: inset 3px 2px 2px 1px #00000091; 
 }
 
 .o {
