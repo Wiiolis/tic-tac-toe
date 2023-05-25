@@ -17,6 +17,9 @@ body {
   height: 312px;
   display: flex;
   flex-wrap: wrap;
+  background-color: rgb(111, 183, 185);
+  border: 50px inset rgb(64, 135, 145);
+  box-shadow:  3px 2px 2px 1px #00000091; 
 }
 
 .square {
@@ -30,4 +33,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: .3s ease all;
+  color: rgb(111, 183, 185);
+}
+
+.x {
+  background-color: cadetblue;
+  border-color: rgb(63, 114, 116);
+  color: white;
+  box-shadow: inset 3px 2px 2px 1px #00000091; 
+}
+
+.o {
+  background-color: indianred;
+  border-color: rgb(150, 59, 59);
+  color: white;
+  box-shadow: inset 3px 2px 2px 1px #00000091; 
 }

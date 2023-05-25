@@ -4,7 +4,7 @@ import { useState } from "react";
 function Square({ value, changeValue }) {
   return (
     <>
-      <div className="square" onClick={changeValue}>
+      <div className={`square ${value}`} onClick={changeValue}>
         {value}
       </div>
     </>
