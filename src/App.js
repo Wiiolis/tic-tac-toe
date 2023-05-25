@@ -37,6 +37,12 @@ export default function App({ props }) {
     getWinner();
   }
 
+  function handleGameRestart() {
+    setXIsNext(true);
+    setSquares(Array(9).fill(null));
+    setWinner("");
+  }
+
   return (
     <div className="App">
       {winner ? (
@@ -50,7 +56,7 @@ export default function App({ props }) {
       <div className="boxBorder" />
       <div className="box">
         <div className={`gateClosed ${winner && "gateOpened"}`}>
-          <p>restart</p>
+          <p onClick={handleGameRestart}>restart</p>
         </div>
         {squares.map((square, idx) => {
           return (
