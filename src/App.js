@@ -1,14 +1,23 @@
 import "./App.css";
 import { useState } from "react";
 
-function Square() {}
+function Square({ value, changeValue }) {
+  return (
+    <>
+      <div className="square" onClick={changeValue}>
+        {value}
+      </div>
+    </>
+  );
+}
 
-export default function App() {
+export default function App({ props }) {
   const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(idx) {
     const nextSquares = squares.slice();
+    if (nextSquares[idx]) return;
 
     if (xIsNext) {
       nextSquares[idx] = "x";
@@ -23,38 +32,13 @@ export default function App() {
 
   return (
     <div className="App">
-      <div className="row">
-        <div className="square" onClick={() => handleClick(0)}>
-          {squares[0]}
-        </div>
-        <div className="square" onClick={() => handleClick(1)}>
-          {squares[1]}
-        </div>
-        <div className="square" onClick={() => handleClick(2)}>
-          {squares[2]}
-        </div>
-      </div>
-      <div className="row">
-        <div className="square" onClick={() => handleClick(3)}>
-          {squares[3]}
-        </div>
-        <div className="square" onClick={() => handleClick(4)}>
-          {squares[4]}
-        </div>
-        <div className="square" onClick={() => handleClick(5)}>
-          {squares[5]}
-        </div>
-      </div>{" "}
-      <div className="row">
-        <div className="square" onClick={() => handleClick(6)}>
-          {squares[6]}
-        </div>
-        <div className="square" onClick={() => handleClick(7)}>
-          {squares[7]}
-        </div>
-        <div className="square" onClick={() => handleClick(8)}>
-          {squares[8]}
-        </div>
+      <p>Current player: {xIsNext ? "x" : "o"}</p>
+      <div className="box">
+        {squares.map((square, idx) => {
+          return (
+            <Square value={squares[idx]} changeValue={() => handleClick(idx)} />
+          );
+        })}
       </div>
     </div>
   );
