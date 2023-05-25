@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Square({ value, changeValue }) {
   return (
@@ -14,6 +14,11 @@ function Square({ value, changeValue }) {
 export default function App({ props }) {
   const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null));
+  const [winner, setWinner] = useState("");
+
+  useEffect(() => {
+    getWinner();
+  }, squares);
 
   function handleClick(idx) {
     const nextSquares = squares.slice();
@@ -27,7 +32,9 @@ export default function App({ props }) {
       setXIsNext(true);
     }
 
-    return setSquares(nextSquares);
+    setSquares(nextSquares);
+
+    getWinner();
   }
 
   return (
@@ -35,6 +42,9 @@ export default function App({ props }) {
       <p>
         Current player: <span>{xIsNext ? "x" : "o"}</span>
       </p>
+
+      <p>Winner is {winner}</p>
+
       <div className="box">
         {squares.map((square, idx) => {
           return (
@@ -44,4 +54,28 @@ export default function App({ props }) {
       </div>
     </div>
   );
+
+  function getWinner() {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+
+      if (
+        squares[a] &&
+        squares[a] === squares[b] &&
+        squares[a] === squares[c]
+      ) {
+        return setWinner(squares[a]);
+      }
+    }
+  }
 }
