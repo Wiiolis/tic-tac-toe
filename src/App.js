@@ -32,7 +32,9 @@ export default function App({ props }) {
 
   return (
     <div className="App">
-      <p>Current player: {xIsNext ? "x" : "o"}</p>
+      <p>
+        Current player: <span>{xIsNext ? "x" : "o"}</span>
+      </p>
       <div className="box">
         {squares.map((square, idx) => {
           return (
