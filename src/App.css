@@ -34,7 +34,7 @@ p > span {
   margin-top: 122px;
   display: flex;
   flex-wrap: wrap;
-  background-color: rgb(111, 183, 185);
+  background-color: rgb(64, 135, 145);
 }
 
 .boxBorder {
@@ -63,7 +63,7 @@ p > span {
   align-items: center;
   justify-content: center;
   transition: .3s ease all;
-  color: rgb(111, 183, 185);
+  background-color: rgb(98, 169, 172);
   position: relative;
 }
 
@@ -72,10 +72,10 @@ p > span {
   width: 0;
   height: inherit;
   position: absolute;
-  transition: 2s ease all;
+  transition: 2s ease width;
   transition-delay: 500ms;
-  box-shadow: inset 1px 1px 1px 1px #00000053; 
   z-index: 5;
+  box-shadow: 5px 0px 0px 0px #00000091, inset 3px 2px 2px 1px #00000091; 
   overflow: hidden;
 }
 
@@ -84,7 +84,6 @@ p > span {
   width: inherit;
   height: inherit;
   position: absolute;
-  box-shadow: 5px 0px 0px 0px #00000091, inset 3px 2px 2px 1px #00000091; 
 }
 
 
@@ -97,10 +96,15 @@ p > span {
   margin-top: 70px;
 }
 
+.gateClosed p:active {
+  text-shadow: 0 1px 0 #5e2727;
+}
+
 .x {
   background-color: cadetblue;
   border-color: rgb(63, 114, 116);
   color: white;
+  box-shadow: inset 3px 2px 2px 1px #00000091; 
 }
 
 .o {
