@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
+import { getByTestId } from "@testing-library/react";
 
 function Square({ value, changeValue }) {
   return (
@@ -15,6 +16,7 @@ export default function App({ props }) {
   const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [winner, setWinner] = useState("");
+  const [tie, setTie] = useState(false);
 
   useEffect(() => {
     getWinner();
@@ -34,6 +36,10 @@ export default function App({ props }) {
 
     setSquares(nextSquares);
 
+    if (!nextSquares.includes(null)) {
+      setTie(true);
+    }
+
     getWinner();
   }
 
@@ -41,21 +47,34 @@ export default function App({ props }) {
     setXIsNext(true);
     setSquares(Array(9).fill(null));
     setWinner("");
+    setTie(false);
+  }
+
+  function renderFinalText() {
+    if (tie) {
+      return <p>It's a Tie!</p>;
+    } else if (winner) {
+      return (
+        <p>
+          Winner is <span>{winner}</span>
+        </p>
+      );
+    } else {
+      return (
+        <p>
+          Current player: <span>{xIsNext ? "x" : "o"}</span>
+        </p>
+      );
+    }
   }
 
   return (
     <div className="App">
-      {winner ? (
-        <p> Winner is {winner} </p>
-      ) : (
-        <p>
-          Current player: <span>{xIsNext ? "x" : "o"}</span>
-        </p>
-      )}
+      {renderFinalText()}
 
       <div className="boxBorder" />
       <div className="box">
-        <div className={`gateClosed ${winner && "gateOpened"}`}>
+        <div className={`gateClosed ${(winner || tie) && "gateOpened"}`}>
           <p onClick={handleGameRestart}>
             <img src={require("./refresh.png")} />
           </p>
