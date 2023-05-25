@@ -56,7 +56,9 @@ export default function App({ props }) {
       <div className="boxBorder" />
       <div className="box">
         <div className={`gateClosed ${winner && "gateOpened"}`}>
-          <p onClick={handleGameRestart}>restart</p>
+          <p onClick={handleGameRestart}>
+            <img src={require("./refresh.png")} />
+          </p>
         </div>
         {squares.map((square, idx) => {
           return (

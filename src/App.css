@@ -18,7 +18,11 @@ p, p>span {
   font-size: 38px;
   color: indianred;
   font-family: Bungee;
-  text-shadow: 0 1px 0 #5e2727, 0 2px 0 #572c2c, 0 3px 0 #542b2b, 0 4px 0 #502d2d, 0 5px 0 #372727, 0 6px 1px rgb(0 0 0 / 10%), 0 0 5px rgb(0 0 0 / 10%), 0 1px 3px rgb(0 0 0 / 30%), 0 3px 5px rgb(0 0 0 / 20%), 0 5px 10px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 20%), 0 20px 20px rgb(0 0 0 / 15%), 2px 2px 2px rgb(206 89 55 / 0%);
+  text-shadow: 0 1px 0 #5e2727, 0 2px 0 #572c2c, 0 3px 0 #542b2b, 0 4px 0 #502d2d, 
+  0 5px 0 #372727, 0 6px 1px rgb(0 0 0 / 10%), 0 0 5px rgb(0 0 0 / 10%),
+   0 1px 3px rgb(0 0 0 / 30%), 0 3px 5px rgb(0 0 0 / 20%), 0 5px 10px rgb(0 0 0 / 25%),
+    0 10px 10px rgb(0 0 0 / 20%), 0 20px 20px rgb(0 0 0 / 15%), 2px 2px 2px 
+    rgb(206 89 55 / 0%);
 }
 
 p > span {
@@ -86,18 +90,26 @@ p > span {
   position: absolute;
 }
 
-
 .gateClosed p {
   position: absolute;
   right: 0;
   width: 310px;
   cursor: pointer;
   text-align: center;
-  margin-top: 70px;
+  margin-top: 100px;
 }
 
-.gateClosed p:active {
-  text-shadow: 0 1px 0 #5e2727;
+img {
+  filter: invert(52%) sepia(90%) saturate(1838%) hue-rotate(324deg) brightness(90%)
+  contrast(75%) drop-shadow(0 1px 0 #5e2727) drop-shadow(0 2px 0 #572c2c)
+  drop-shadow(0 3px 0 #542b2b) drop-shadow(0 4px 0 #502d2d) drop-shadow( 0 0 5px rgb(0 0 0 / 10%))
+  drop-shadow( 0 1px 3px rgb(0 0 0 / 30%));
+  }
+
+.gateClosed img:active {
+  margin-top: 10px;
+  filter: invert(52%) sepia(90%) saturate(1838%) hue-rotate(324deg) brightness(90%)
+  contrast(75%) drop-shadow(0 1px 0 #5e2727) drop-shadow(0 1px 3px rgb(0 0 0 / 30%))
 }
 
 .x {
@@ -108,7 +120,7 @@ p > span {
 }
 
 .o {
-  background-color: indianred;
+  background-color: #cd5c5c;
   border-color: rgb(150, 59, 59);
   color: white;
   box-shadow: inset 3px 2px 2px 1px #00000091; 
