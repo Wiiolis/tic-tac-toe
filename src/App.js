@@ -1,6 +1,5 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { getByTestId } from "@testing-library/react";
 
 function Square({ value, changeValue }) {
   return (
@@ -15,7 +14,7 @@ function Square({ value, changeValue }) {
 export default function App({ props }) {
   const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null));
-  const [winner, setWinner] = useState("");
+  const [winner, setWinner] = useState();
   const [tie, setTie] = useState(false);
 
   useEffect(() => {
@@ -23,7 +22,10 @@ export default function App({ props }) {
   }, squares);
 
   function handleClick(idx) {
+    // create copy of squares array
     const nextSquares = squares.slice();
+
+    // if square already has symbol or there is a winner, prevent action
     if (nextSquares[idx] || winner) return;
 
     if (xIsNext) {
@@ -36,11 +38,13 @@ export default function App({ props }) {
 
     setSquares(nextSquares);
 
-    if (!nextSquares.includes(null)) {
+    // check for winner
+    getWinner();
+
+    // if there is no more empty squares and no winner, it's a tie!
+    if (!nextSquares.includes(null) && !winner) {
       setTie(true);
     }
-
-    getWinner();
   }
 
   function handleGameRestart() {
@@ -51,14 +55,14 @@ export default function App({ props }) {
   }
 
   function renderFinalText() {
-    if (tie) {
-      return <p>It's a Tie!</p>;
-    } else if (winner) {
+    if (winner) {
       return (
         <p>
           Winner is <span>{winner}</span>
         </p>
       );
+    } else if (tie) {
+      return <p>It's a Tie!</p>;
     } else {
       return (
         <p>
@@ -71,7 +75,6 @@ export default function App({ props }) {
   return (
     <div className="App">
       {renderFinalText()}
-
       <div className="boxBorder" />
       <div className="box">
         <div className={`gateClosed ${(winner || tie) && "gateOpened"}`}>
@@ -79,6 +82,7 @@ export default function App({ props }) {
             <img src={require("./refresh.png")} />
           </p>
         </div>
+
         {squares.map((square, idx) => {
           return (
             <Square value={squares[idx]} changeValue={() => handleClick(idx)} />
@@ -99,9 +103,9 @@ export default function App({ props }) {
       [0, 4, 8],
       [2, 4, 6],
     ];
+
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
-
       if (
         squares[a] &&
         squares[a] === squares[b] &&
